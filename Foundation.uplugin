@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0",
+	"FriendlyName": "Foundation",
+	"Description": "Foundation",
+	"Category": "Other",
+	"CreatedBy": "Jon Sawler",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "Foundation",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
