@@ -61,3 +61,12 @@ void FRequestManager_WB::OnResponse(const FString Response){
 		FRequestUtils::DisplayError("Failed to parse Response from the server");
 	}
 }
+
+void FRequestManager_WB::CancelRequest(FRequestData* RequestData)
+{
+	if (RequestData)
+	{
+		RequestData->Callback.Unbind();
+		RequestData->ErrorCallback.Unbind();
+	}
+}
