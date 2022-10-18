@@ -1,8 +1,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "WebSocketsModule.h"
 #include "IWebSocket.h"
-#include "WebSocketTestMyGameInstance.generated.h"
 
 DECLARE_DELEGATE_OneParam( RequestCallback, FJsonObject&);
 DECLARE_DELEGATE_OneParam( RequestErrorCallback, const FText& FailureReason);
@@ -26,6 +26,10 @@ class FOUNDATION_API FRequestManager_WB{
         virtual void Init() override;
         virtual void Shutdown() override;
 
+        static int64 GetNextMessageID();
+	    static int64 GetLastMessageID();
         static void SendRequest(FRequestData* RequestData);
         static void CancelRequest(FRequestData* RequestData);
+    private:
+	    static void OnResponse(FHttpRequestPtr Request, FHttpResponsePtr Response, bool bSuccess);
 }
