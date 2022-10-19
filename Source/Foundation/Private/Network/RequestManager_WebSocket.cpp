@@ -30,7 +30,7 @@ void FRequestManager_WB::SendRequest(FRequestData* RequestData)
 
 }
 
-void FRequestManager_WB::OnResponse(const FString Response){
+void FRequestManager_WB::OnResponse(const FString &Response){
 	TSharedPtr<FJsonObject> ParsedJSON;
 	TSharedRef<TJsonReader<TCHAR>> Reader = TJsonReaderFactory<>::Create(Response);
 
@@ -64,9 +64,7 @@ void FRequestManager_WB::OnResponse(const FString Response){
 
 void FRequestManager_WB::CancelRequest(FRequestData* RequestData)
 {
-	if (RequestData)
-	{
-		RequestData->Callback.Unbind();
-		RequestData->ErrorCallback.Unbind();
-	}
+	PendingRequests.Remove(RequestData);
+	delete RequestData;
+            	
 }
