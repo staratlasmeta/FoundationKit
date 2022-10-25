@@ -18,18 +18,21 @@ struct FOUNDATION_API FRequestData
 };
 
 class FOUNDATION_API FRequestManager_WB:  public UObject{
-    public:
-        TSharedPtr<IWebSocket> WebSocket;
-        virtual void Init() override;
-        virtual void Shutdown() override;
+    GENERATED_BODY()
+public:
+    DECLARE_EVENT(FRequestManager_WB, FSocketConnected);
+    TSharedPtr<IWebSocket> WebSocket;
+    virtual void Init() override;
+    virtual void Shutdown() override;
 
-        int64 GetNextMessageID();
-	    int64 GetLastMessageID();
+    int64 GetNextMessageID();
+    int64 GetLastMessageID();
 
-        void SendRequest(FRequestData* RequestData);
-        void CancelRequest(FRequestData* RequestData);
+    void SendRequest(FRequestData* RequestData);
+    void CancelRequest(FRequestData* RequestData);
 
-    private:
-	    void OnResponse(const FString &Response);
-        void OnConnected_Helper();
+private:
+    FSocketConnected OnConnected;
+    void OnResponse(const FString &Response);
+    void OnConnected_Helper();
 }

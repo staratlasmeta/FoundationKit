@@ -25,8 +25,8 @@ void FRequestManager_WB::SendRequest(FRequestData* RequestData)
 		// Don't send if we're not connected.
 		return;
 	}
-	WebSocket->Send(RequestData->Body);
 	PendingRequests.Push(RequestData);
+	WebSocket->Send(RequestData->Body);
 
 }
 
@@ -66,5 +66,10 @@ void FRequestManager_WB::CancelRequest(FRequestData* RequestData)
 {
 	PendingRequests.Remove(RequestData);
 	delete RequestData;
-            	
+          	
+}
+
+void FRequestManager_WB::OnConnected_Helper(){
+	OnConnected.Broadcast();
+
 }
